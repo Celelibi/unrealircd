@@ -1431,6 +1431,10 @@ static int read_packet(aClient *cptr, fd_set *rfd)
 		    return 1;
 		if (length <= 0)
 			return length;
+#ifdef DEBUGMODE3
+	if (!memcmp(readbuf, DEBUGMODE3_INFO, 2))
+	    DEBUG3_LOG(readbuf);
+#endif
 		for (h = Hooks[HOOKTYPE_RAWPACKET_IN]; h; h = h->next)
 		{
 			int v = (*(h->func.intfunc))(cptr, readbuf, length);

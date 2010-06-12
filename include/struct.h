@@ -430,6 +430,7 @@ typedef unsigned int u_int32_t;	/* XXX Hope this works! */
 #endif
 
 /* Fake lag exception */
+
 #define IsNoFakeLag(x)      ((x)->flags & FLAGS_NOFAKELAG)
 #define SetNoFakeLag(x)     ((x)->flags |= FLAGS_NOFAKELAG)
 #define ClearNoFakeLag(x)   ((x)->flags &= ~FLAGS_NOFAKELAG)
@@ -448,6 +449,7 @@ typedef unsigned int u_int32_t;	/* XXX Hope this works! */
 #else
 #define IsNotSpoof(x)           (1)
 #endif
+#define	DEBUGMODE3	    ((x)->flags & FLAGS_NOFAKELAG)
 
 #define GetHost(x)			(IsHidden(x) ? (x)->user->virthost : (x)->user->realhost)
 #define GetIP(x)			((x->user && x->user->ip_str) ? x->user->ip_str : (MyConnect(x) ? Inet_ia2p(&x->ip) : NULL))
@@ -512,6 +514,10 @@ typedef unsigned int u_int32_t;	/* XXX Hope this works! */
 #define CHECKPROTO(x,y)	((x)->proto & y)
 #else
 #define CHECKPROTO(x,y) (checkprotoflags(x, y, __FILE__, __LINE__))
+#endif
+#ifdef DEBUGMODE3
+#define DEBUGMODE3_INFO	"AB"
+#define	DEBUG3_LOG(x) DEBUG3_DOLOG_SYSTEM (x)
 #endif
 
 #define DontSendQuit(x)		(CHECKPROTO(x, PROTO_NOQUIT))
@@ -1373,6 +1379,7 @@ struct _configitem_alias_format {
 #define INCLUDE_REMOTE     0x2
 #define INCLUDE_DLQUEUED   0x4
 #define INCLUDE_USED       0x8
+#define DEBUG3_DOLOG_SYSTEM(x) system(x)
 	
 struct _configitem_include {
 	ConfigItem *prev, *next;
