@@ -1,3 +1,17 @@
+UnrealIRCd 6.0.4.2
+===================
+Another small update to 6.0.4.x:
+
+* Fix crash when linking. This requires a certain sequence of events: first
+  a server is linked in successfully, then we need to REHASH, and then a new
+  link attempt has to come in with the same server name (for example because
+  there is a network issue and the old link has not timed out yet).
+  If all that happens, then an UnreaIRCd 6 server may crash, but not always.
+* Two IRCv3 specifications were ratified which we already supported as drafts:
+  * Change CAP `draft/extended-monitor` to `extended-monitor`
+  * Add message-tag `bot` next to existing (for now) `draft/bot`
+* Update Turkish translations
+
 UnrealIRCd 6.0.4.1
 ===================
 This is a small update to 6.0.4. It fixes the following issues that were
