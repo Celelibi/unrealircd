@@ -1,23 +1,5 @@
-UnrealIRCd 6.1.8-git
-===============
-
-This is the git version (development version) for future 6.1.8. This is work
-in progress and may not always be a stable version.
-
-### Enhancements:
-* TODO
-
-### Changes:
-* TODO
-
-### Fixes:
-* TODO
-
-### Developers and protocol:
-* TODO
-
 UnrealIRCd 6.1.7.2
--------------------
+===================
 UnrealIRCd 6.1.7.2 is a dot release:
 * [Central Blocklist](https://www.unrealircd.org/docs/Central_Blocklist):
   Fix issue if CBL server is not reachable (caused nick collisions)
