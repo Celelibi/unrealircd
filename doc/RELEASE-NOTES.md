@@ -1,5 +1,20 @@
+UnrealIRCd 6.0.4.1
+===================
+This is a small update to 6.0.4. It fixes the following issues that were
+present in all 6.0.x versions:
+
+* Fix sporadic crash when linking a server (after successful authentication).
+  This feels like a compiler bug. It affected only some people with GCC and
+  only in some situations. When compiled with clang there was no problem.
+  Hopefully we can work around it this way.
+* Make /INVITE bypass (nearly) all channel mode restrictions, as it used to
+  be in UnrealIRCd 5.x. Both for invites by channel ops and for OperOverride.
+  This also fixes a bug where an IRCOp with OperOverride could not bypass +l
+  (limit) and other restrictions and would have to resort back to using
+  MODE or SAMODE. Only +b and +i could be bypassed via INVITE OperOverride.
+
 UnrealIRCd 6.0.4
-=================
+-----------------
 This release comes with lots of features and enhancements. In particular,
 security groups and mask items now allow you to write cleaner and more
 flexible configuration files. There are also JSON logging enhancements and
