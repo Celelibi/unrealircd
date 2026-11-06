@@ -1,5 +1,34 @@
+UnrealIRCd 6.2.7.1
+===================
+
+This is a security release. It fixes a CRITICAL bug that allows any
+ordinary user to execute commands with server or IRCOp authority.
+It also fixes several crashes, hangs, and a bug where it was possible
+to "decloak" a user (reveal the user's IP address).
+
+All these bugs were found during an extensive internal audit with the
+help of AI.
+
+NOTE: These fixes are also available through one 'hot-patch', so you can
+fix your existing UnrealIRCd 6 without a restart (except on Windows).
+See the security advisory for details.
+
+### Fixes:
+* CRITICAL issue that can be abused by any normal user to execute
+  commands with server or IRCOp authority. This means any ordinary user
+  can KILL, GLINE, and do many more bad things.
+* A normal user could "decloak" another user, revealing the IP address
+  of the victim.
+* Another leak of the IP address
+* Blacklist recheck could hang the server
+* Crash on CHGIDENT from Services, which a normal user can trigger
+* Counting error which could cause a "This server is full" message to
+  every new connect, until the server is restarted.
+* Limit the number of bans Services can set, to 2x set::maxbans
+* Potential flood issue with TLS renegotiations
+
 UnrealIRCd 6.2.7
-=================
+-----------------
 
 This UnrealIRCd 6.2.7 release fixes multiple issues in the webserver
 module which allow an attacker to stall the IRCd. If you use Websockets
